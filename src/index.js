@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promise from "redux-promise";
+import thunk from 'redux-thunk';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import reducers from './reducers';
@@ -11,7 +12,7 @@ import PostsIndex from "./components/post-index";
 import PostsNew from "./components/posts-new";
 import PostsShow from "./components/posts-show";
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // Move most specific route to the top of the switch list
 ReactDOM.render(

@@ -9,12 +9,20 @@ export const DELETE_POST = 'DELETE_POST';
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=jasonawe';
 
+// Adding redux thunk
 export function fetchPosts() {
     const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
 
-    return {
-        type: FETCH_POSTS,
-        payload: request
+    // param will be the dispatch method used in redux
+    // Cool article https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60
+    return (dispatch) => {
+        request
+            .then(({ data }) => {
+                dispatch({
+                    type: FETCH_POSTS,
+                    payload: request
+                })
+            });
     };
 }
 
